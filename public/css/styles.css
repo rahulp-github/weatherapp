@@ -1,0 +1,37 @@
+
+
+.homeCard{
+    text-align: center;
+}
+
+#start{
+    width:200px;
+}
+
+.userCard{
+   margin-top: 100px;
+   width:30%;
+   text-align: center;
+
+}
+
+/*----------- media queries ----------- */
+
+@media (max-width: 1440px) {
+  .userCard{
+     width: 40%;
+  }
+}
+
+@media (max-width:1024px){
+  .userCard{
+    width: 45%;
+  }
+}
+
+@media (max-width:768px){
+  .userCard{
+    width:100%;
+  }
+}
+
