@@ -15,6 +15,11 @@
 
 }
 
+.input-part h6, .card-text, .card-title {
+  color: black;
+}
+
+
 /*----------- media queries ----------- */
 
 @media (max-width: 1440px) {

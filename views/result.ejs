@@ -5,46 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Weather App</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
-  <link href="css/site.css" rel="stylesheet">
+  <link href="/css/site.css" rel="stylesheet">
 </head>
 <body>
 
 <main class="main-container">
 
   <div class="location-and-date">
-    <h1 class="location-and-date__location">Mumbai, India</h1>
-    <div>Wednesday 8th September</div>
+    <h1 class="location-and-date__location"><%=data.city%> , <%=data.country%></h1>
+    <div><%=data.dayName%>, <%=data.fullDate%></div>
   </div>
 
 
   <div class="current-temperature">
     <div class="current-temperature__icon-container">
-      <img src="icons/mostly-sunny.svg" class="current-temperature__icon" alt="">
+      <img src="/icons/mostly-sunny.svg" class="current-temperature__icon" alt="">
     </div>
     <div class="current-temperature__content-container">
-      <div class="current-temperature__value">21&deg;</div>
-      <div class="current-temperature__summary">Mostly Sunny</div>
+      <div class="current-temperature__value"><%= Math.floor(data.temp)%>&deg;</div>
+      <div class="current-temperature__summary"><%=data.main%></div>
     </div>
   </div>
 
 
   <div class="current-stats">
     <div>
-      <div class="current-stats__value">23&deg;</div>
+      <div class="current-stats__value"><%=Math.ceil(data.temp_min)%>&deg;</div>
       <div class="current-stats__label">High</div>
-      <div class="current-stats__value">14&deg;</div>
-      <div class="current-stats__label">Low</div>
+      <div class="current-stats__value"><%=data.visibility%>m</div>
+      <div class="current-stats__label">Visibility</div>
     </div>
     <div>
-      <div class="current-stats__value">7mph</div>
+      <div class="current-stats__value"><%=Math.floor(data.wind)%>mph</div>
       <div class="current-stats__label">Wind</div>
-      <div class="current-stats__value">0%</div>
-      <div class="current-stats__label">Rain</div>
+      <div class="current-stats__value"><%=data.humidity%>%</div>
+      <div class="current-stats__label">Humidity</div>
     </div>
     <div>
-      <div class="current-stats__value">05:27</div>
+      <div class="current-stats__value"><%=data.sunrise%></div>
       <div class="current-stats__label">Sunrise</div>
-      <div class="current-stats__value">20:57</div>
+      <div class="current-stats__value"><%=data.sunset%></div>
       <div class="current-stats__label">Sunset</div>
     </div>
   </div>
@@ -54,37 +54,37 @@
     <div class="weather-by-hour__container">
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">3am</div>
-        <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+        <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         <div>14&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">6am</div>
-        <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+        <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         <div>16&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">9am</div>
-        <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+        <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         <div>17&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">12pm</div>
-        <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+        <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         <div>19&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">3pm</div>
-        <img src="icons/sunny.svg" alt="Sunny">
+        <img src="/icons/sunny.svg" alt="Sunny">
         <div>21&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">6pm</div>
-        <img src="icons/sunny.svg" alt="Sunny">
+        <img src="/icons/sunny.svg" alt="Sunny">
         <div>20&deg;</div>
       </div>
       <div class="weather-by-hour__item">
         <div class="weather-by-hour__hour">9pm</div>
-        <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+        <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         <div>18&deg;</div>
       </div>
     </div>
@@ -113,7 +113,7 @@
         </div>
 
         <div class="next-5-days__icon">
-          <img src="icons/sunny.svg" alt="Sunny">
+          <img src="/icons/sunny.svg" alt="Sunny">
         </div>
 
         <div class="next-5-days__rain">
@@ -145,7 +145,7 @@
         </div>
 
         <div class="next-5-days__icon">
-          <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+          <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         </div>
 
         <div class="next-5-days__rain">
@@ -177,7 +177,7 @@
         </div>
 
         <div class="next-5-days__icon">
-          <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+          <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         </div>
 
         <div class="next-5-days__rain">
@@ -209,7 +209,7 @@
         </div>
 
         <div class="next-5-days__icon">
-          <img src="icons/sunny.svg" alt="Sunny">
+          <img src="/icons/sunny.svg" alt="Sunny">
         </div>
 
         <div class="next-5-days__rain">
@@ -241,7 +241,7 @@
         </div>
 
         <div class="next-5-days__icon">
-          <img src="icons/mostly-sunny.svg" alt="Mostly sunny">
+          <img src="/icons/mostly-sunny.svg" alt="Mostly sunny">
         </div>
 
         <div class="next-5-days__rain">

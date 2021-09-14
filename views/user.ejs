@@ -15,14 +15,14 @@
 </head>
 
 <style>
-    body{
-        background-color: cornflowerblue;
-    }
+  body {
+    background-color: cornflowerblue;
+  }
 </style>
 
 <body>
 
-  <!-- Navbar Starts -->
+  <!-- Navbar Starts  -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">WeatherApp</a>
@@ -47,27 +47,47 @@
   </nav>
   <!-- NavBar ends -->
   <hr>
-
-  <div class="container">
-  <div class="card userCard mx-auto">
-    <div class="card-body">
-      <h5 class="card-title">Enter a location</h5>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
-        <input type="text" class="form-control" placeholder="Enter a Location" aria-describedby="basic-addon1">
+  <section class="input-part">
+    <div class="container">
+      <div class="card userCard mx-auto">
+        <div class="card-body">
+          <h5 class="card-title">Enter a location</h5>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
+            <input type="text" class="form-control" placeholder="Enter a Location" aria-describedby="basic-addon1">
+          </div>
+          <h6 style="text-align: center;">OR</h6>
+          <p class="card-text">Use Your Current Location</p>
+          <button id="locationBtn" class="btn btn-outline-danger"><i class="bi bi-geo-fill"></i> Use Your
+            Location</button>
+        </div>
       </div>
-      <h6 style="text-align: center;">OR</h6>
-      <p class="card-text">Use Your Current Location</p>
-      <a href="/result" class="btn btn-outline-danger"><i class="bi bi-geo-fill"></i> Use Your Location</a>
     </div>
-  </div>
-  </div>
+  </section>
 
+  <script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
+    // Add event listener on get location button
+    const button = document.getElementById('locationBtn');
+    button.addEventListener('click', () => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const { latitude, longitude } = position.coords;
+          const data = { latitude, longitude };
+
+          //Make a GET Request at '/result'
+          window.location.href = `/result?lat=${latitude}&lon=${longitude}`;
+        });
+      }
+      else {
+           alert('Your Browser does not supports geolocation api');
+      }
+    });
+  </script>
 
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </html>
