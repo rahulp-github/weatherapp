@@ -7,13 +7,18 @@
     "axios": "^0.21.4",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "path": "^0.12.7",
     "request": "^2.88.2"
+=======
+    "nodemon": "^2.0.12",
+    "path": "^0.12.7"
+>>>>>>> 43b7417f24ca6b5f4853bc509ad526e177058c4a
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start": "nodemon index"
   },
   "author": "",
   "license": "ISC"
