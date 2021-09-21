@@ -12,14 +12,15 @@
 <main class="main-container">
 
   <div class="location-and-date">
-    <h1 class="location-and-date__location">Borivali , <%=data.country%></h1>
+    <h1 class="location-and-date__location"><%=data.city%> , <%=data.country%></h1>
     <div><%=data.dayName%>, <%=data.fullDate%></div>
   </div>
 
 
   <div class="current-temperature">
     <div class="current-temperature__icon-container">
-      <img src="/icons/mostly-sunny.svg" class="current-temperature__icon" alt="">
+      <!-- <img src="/icons/mostly-sunny.svg" class="current-temperature__icon" alt=""> -->
+      <img src="/icons/mostly-sunny.svg" onload="this.onload=null; this.src=icon(<%=data.iconId%>);" class="current-temperature__icon" alt="Image Not Available">
     </div>
     <div class="current-temperature__content-container">
       <div class="current-temperature__value"><%= Math.floor(data.temp)%>&deg;</div>
@@ -96,6 +97,27 @@
      
     </div>
   </div>
+
+  <script>
+    // Function which returns the path of icon based on weather conditions
+    function icon(iconId){
+      var iconPath = "/icons/clear.svg";
+      if(iconId == 800){
+          iconPath = "/icons/clear.svg";
+      }else if(iconId >= 200 && iconId <= 232){
+          iconPath = "/icons/storm.svg";  
+      }else if(iconId >= 600 && iconId <= 622){
+          iconPath = "/icons/snow.svg";
+      }else if(iconId >= 701 && iconId <= 781){
+          iconPath = "/icons/haze.svg";
+      }else if(iconId >= 801 && iconId <= 804){
+          iconPath = "/icons/cloud.svg";
+      }else if((iconId >= 500 && iconId <= 531) || (iconId >= 300 && iconId <= 321)){
+          iconPath = "/icons/rain.svg";
+      }
+      return iconPath;
+    }
+  </script>
 
 </main>
 

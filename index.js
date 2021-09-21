@@ -2,7 +2,8 @@
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
-
+const session = require('express-session');
+const flash = require('connect-flash');
 // Global Variable
 let api;
 
@@ -18,6 +19,22 @@ router.use(express.static(path.join(__dirname, 'public')));
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
+// Express Session Middleware
+router.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+router.use(flash());
+
+// Global variable - Store  error messages 
+router.use((req, res, next) => {
+    res.locals.error = req.flash('error');
+    next();
+});
+
+
 // endpoints
 
 router.get('/',(eq,res) => {
@@ -32,9 +49,13 @@ router.get('/result',(req,res) => {
   // Parse the longitude and latitude from the url bar
   const lat = req.query.lat;
   const lon = req.query.lon;
-
+  const city = req.query.city;
+  //console.log(lat,lon,city);
   if(lat !== undefined && lon !== undefined){
-      onSuccess(lat,lon,req,res);
+      useLatLon(lat,lon,req,res);
+  }
+  else if(city !== undefined){
+      useCity(city,req,res);
   }
   else{
       console.log('Error');
@@ -43,10 +64,15 @@ router.get('/result',(req,res) => {
 
 
 // Calls api based on latitude and longitude
-function onSuccess(lat,lon,req,res){
+function useLatLon(lat,lon,req,res){
     const latitude = lat;
     const longitude = lon;
     api = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=d1bc0fcd14e6a0ee9cd81e89b686cd7f`;
+    fetchData(req,res);
+}
+
+function useCity(city,req,res){
+    api = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=d1bc0fcd14e6a0ee9cd81e89b686cd7f`;
     fetchData(req,res);
 }
 
@@ -57,7 +83,8 @@ function fetchData(req,res){
           const response = await axios.get(api);
           weatherDetails(response.data,req,res);
         } catch (error) {
-          console.log(error);
+            req.flash('error','Entered City isnt valid city name');
+            res.redirect('/search');
         }
       })();
 }
@@ -65,7 +92,7 @@ function fetchData(req,res){
 // Extracts The important details from the json 
 function weatherDetails(info,req,res){
     if(info.cod == "404"){
-        console.log('error');
+        console.log("Not Found");
     }else{
         // City Name
         const city = info.city.name;
@@ -86,6 +113,8 @@ function weatherDetails(info,req,res){
         const wind = info.list[0].wind.speed;
         // Short Description
         const description = info.list[0].weather[0].description;
+        // Icon selection id
+        const iconId = info.list[0].weather[0].id;
         const d = new Date();
         const month = d.getMonth() + 1;	  // Month	    [mm]	(1 - 12)
         const day  =  d.getDate();		  // Day		[dd]	(1 - 31)
@@ -109,7 +138,8 @@ function weatherDetails(info,req,res){
             sunset,
             visibility,
             description,
-            forecast
+            forecast,
+            iconId
             
         };
         // Send the data to result page

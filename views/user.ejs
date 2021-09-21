@@ -46,6 +46,12 @@
     </div>
   </nav>
   <!-- NavBar ends -->
+  <% if(error.length > 0 ){ %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 90%; margin: 10px auto;">
+        <p style="text-align: center; font-weight: bold; font-size: 20px; margin: 0"><%= error %></p> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
   <hr>
   <section class="input-part">
     <div class="container">
@@ -54,7 +60,7 @@
           <h5 class="card-title">Enter a location</h5>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
-            <input type="text" class="form-control" placeholder="Enter a Location" aria-describedby="basic-addon1">
+            <input id="inputBox" type="text" class="form-control" placeholder="Enter a Location" aria-describedby="basic-addon1">
           </div>
           <h6 style="text-align: center;">OR</h6>
           <p class="card-text">Use Your Current Location</p>
@@ -83,6 +89,15 @@
            alert('Your Browser does not supports geolocation api');
       }
     });
+    
+    // Add event listener on input box
+    const inputBox = document.getElementById("inputBox");
+    inputBox.addEventListener("keyup", e =>{
+      if(e.key == "Enter" && inputBox.value != ""){
+          window.location.href = `/result?city=${inputBox.value}`;
+      }
+    });
+  
   </script>
 
 </body>
