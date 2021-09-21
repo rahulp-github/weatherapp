@@ -47,7 +47,7 @@ function onSuccess(lat,lon,req,res){
     const latitude = lat;
     const longitude = lon;
     api = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=d1bc0fcd14e6a0ee9cd81e89b686cd7f`;
-   fetchData(req,res);
+    fetchData(req,res);
 }
 
 // fetches the json from open weather api

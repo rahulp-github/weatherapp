@@ -238,3 +238,9 @@ body {
     order: -1;
   }
 }
+
+
+.line{
+  border: 2px solid #ccc;
+  width: 100%;
+}
