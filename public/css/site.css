@@ -244,3 +244,32 @@ body {
   border: 0.8px solid #ccc;
   width: 100%;
 }
+
+.avg{
+  display: inline;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.left{
+  float:left !important;
+
+}
+
+.right{
+  float:right !important;
+  margin-top: 5px;
+}
+
+.back{
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: transparent ;
+  color: white;
+}
+
+.back:hover{
+  background-color: white;
+  color: black;
+}
