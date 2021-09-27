@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const spawn = require('child_process').spawn;
 // Global Variable
 let api;
+const PORT = process.env.PORT || 3000;
 
 // Python Code
 function python(){
@@ -260,6 +261,6 @@ function unixDecode(timestamp){
 
 
 // Testing Purpose
-router.listen(3000,(req,res) => {
-    console.log("Listening on port 3000");
+router.listen(PORT,(req,res) => {
+    console.log(`Listening on port ${PORT}`);
 });
