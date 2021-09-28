@@ -215,13 +215,14 @@ function getDetails(req,res,info,mlAvgTemp){
         iconPath = "/icons/rain.svg";
     }
     return iconPath;
-  }
+}
 
 // Calls Python Script
 async function callPython(){
     const dObj = new Date;
     const year = dObj.getFullYear();
-    const month = getMonth();
+    const month = await getMonth();
+    console.log(year,month);
     const callPythonScript = spawn('python',["main.py", year, month]);
     for await (const chunk of callPythonScript.stdout) {
             return chunk;
@@ -240,7 +241,7 @@ function getDay(){
 function getMonth(){
     const months = ["jan","feb","march","april","may","june","july","aug","sept","oct","nov","dec"]
     const d = new Date();
-    return months[d];
+    return months[d.getMonth()];
 }
 // Decodes the unix style time stamp in 24-hr format time
 function unixDecode(timestamp){

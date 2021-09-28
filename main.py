@@ -19,6 +19,6 @@ def getmeanTemp(year,month):
   print(regressor.predict([[year]]))
   sys.stdout.flush()
 
-# year = sys.argv[1]
-# month = sys.argv[2]
-getmeanTemp(2021,"jan")
+year = sys.argv[1]
+month = sys.argv[2]
+getmeanTemp(year,month)
