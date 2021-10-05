@@ -9,16 +9,6 @@ const spawn = require('child_process').spawn;
 let api;
 const PORT = process.env.PORT || 3000;
 
-// Python Code
-function python(){
-    let num1 = 10;
-    let num2 = 20;
-    const pythonProcess = spawn('python',["main.py", num1, num2]);
-    pythonProcess.stdout.on('data', (data) => {
-        console.log("Addition is : ",data.toString());
-    });
-}
-
 // express object
 const router = express();
 
@@ -101,6 +91,7 @@ function fetchData(req,res){
             res.redirect('/search');
         }
       })();
+      
 }
 
 // Checks to integrate ml code or not
